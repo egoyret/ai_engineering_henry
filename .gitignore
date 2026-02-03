@@ -3,6 +3,25 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+secrets.*
+credentials.*
+
+# Project artifacts
+01_class/ai_engineering/briefs/*.md
+!01_class/ai_engineering/briefs/.gitkeep
+01_class/python_software_engineering/queue_report.json
+
 # C extensions
 *.so
 
@@ -135,7 +154,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .envrc
 .venv
 env/
@@ -143,6 +161,18 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Claude / Claude Code
+.claude/
+.claude-code/
+.claude_code/
+CLAUDE.local.md
+CLAUDE.md.local
+
+# Codex
+.codex/
+.codexrc
+.codex-cache/
 
 # Spyder project settings
 .spyderproject
