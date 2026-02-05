@@ -14,7 +14,29 @@ Al terminar esta clase deberías poder:
 
 ## Conexión con Estructura Unificada de Prompts
 
-**Antes de continuar, lee la sección "Fundamentos de Prompt Engineering" en el README principal.**
+**Antes de continuar, ten presente los siguientes postulados**
+
+
+<details>
+  <summary> Principio Rector #1 </summary>
+
+  El LLM o Agente depende del contexto que le den! es su única herramienta para actuar y ejecutar actividades.
+    ![](https://pbs.twimg.com/media/FxYs-MYaUAURqNo?format=jpg&name=360x360)
+    ![](https://pbs.twimg.com/media/FxYs-MPacAIyKQC?format=jpg&name=360x360)
+
+</details>
+
+
+<details>
+  <summary> Principio Rector #2 </summary>
+
+  El LLM o Agente No adivina! no supone y no sabe lo que estas pensando. Ordena las ideas
+    ![](https://pbs.twimg.com/media/GonrGbtWsAEzmeV?format=jpg&name=small)
+
+
+</details>
+
+
 
 Todo lo que verás en esta clase sigue la estructura de 5 capas:
 
@@ -610,3 +632,5 @@ make run-notebooks
 
 **Principio fundamental:**
 Buen prompting no es agregar complejidad; es usar la **mínima complejidad que garantiza calidad medible**.
+
+
