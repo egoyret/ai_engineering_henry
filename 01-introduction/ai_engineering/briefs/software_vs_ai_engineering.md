@@ -1,100 +1,121 @@
 # Diferencias entre Software Engineering y AI Engineering
 
 ## Resumen ejecutivo
-La ingeniería de software y la ingeniería de IA son disciplinas complementarias pero distintas. La ingeniería de software se centra en la creación de aplicaciones y sistemas robustos, mientras que la ingeniería de IA se enfoca en el desarrollo de modelos que aprenden de datos. Las decisiones en cada área impactan directamente en el negocio y conllevan riesgos técnicos específicos que deben ser gestionados adecuadamente.
+La ingeniería de software se centra en el desarrollo de aplicaciones y sistemas mediante métodos tradicionales, mientras que la ingeniería de AI se enfoca en construir modelos que aprenden de datos. Las decisiones en cada área impactan el negocio de manera diferente y presentan distintos riesgos técnicos. Este brief proporciona un análisis detallado para guiar a los equipos en la elección del enfoque adecuado según el contexto del proyecto.
 
 ## Matriz comparativa
 
-| Dimensión                | Software Engineering                       | AI Engineering                               | Riesgo si se aplica mal                          |
-|-------------------------|------------------------------------------|---------------------------------------------|-------------------------------------------------|
-| Enfoque                 | Desarrollo de sistemas basados en reglas | Modelos que aprenden de datos              | Modelos ineficaces o sesgados                    |
-| Ciclo de vida           | Lineal y predecible                      | Iterativo y dependiente de datos            | Fallos en la calidad de los datos                |
-| Escalabilidad           | Escalable con arquitectura adecuada      | Escalabilidad limitada por datos y modelos  | Costos elevados y tiempo de inactividad          |
-| Mantenimiento           | Enfocado en bugs y mejoras               | Enfocado en la deriva del modelo            | Desempeño decreciente sin monitoreo continuo     |
-| Herramientas            | IDEs, control de versiones, CI/CD        | Frameworks de ML, herramientas de datos     | Selección inadecuada de herramientas              |
+| Dimensión               | Software Engineering                          | AI Engineering                               | Riesgo si se aplica mal                       |
+|------------------------|----------------------------------------------|---------------------------------------------|------------------------------------------------|
+| Enfoque                | Basado en reglas y lógica predefinida       | Basado en datos y aprendizaje automático    | Modelos ineficaces o sesgados                  |
+| Escalabilidad          | Escalable con arquitectura adecuada           | Escalabilidad limitada por datos y modelos  | Costos crecientes y rendimiento decreciente    |
+| Mantenimiento          | Mantenimiento predecible y controlado        | Mantenimiento complejo y dependiente de datos| Deuda técnica acumulada y falta de interpretabilidad |
+| Evaluación de calidad  | Pruebas unitarias y de integración           | Validación de modelos y métricas de rendimiento| Modelos que no cumplen con los requisitos de negocio |
+| Tiempo de desarrollo    | Ciclos de desarrollo más cortos              | Ciclos más largos debido a la preparación de datos | Retrasos en el lanzamiento y costos adicionales  |
 
 ## Análisis crítico por ciclo de vida
 
 ### Discovery
 - **Artefactos esperados**: Requerimientos funcionales y no funcionales.
-- **Owner principal**: Product Manager.
-- **Failure mode más común**: Requerimientos mal definidos.
+- **Owner principal**: Product Owner.
+- **Failure mode más común**: Falta de alineación entre los requerimientos y las capacidades del modelo.
 - **Criterio de salida**: Validación de requerimientos con stakeholders.
 
 ### Build
 - **Artefactos esperados**: Código fuente, documentación técnica.
-- **Owner principal**: Software Engineer / Data Scientist.
-- **Failure mode más común**: Integración fallida de componentes.
+- **Owner principal**: Ingeniero de software o Data Scientist.
+- **Failure mode más común**: Integración ineficiente entre componentes.
 - **Criterio de salida**: Código revisado y pruebas unitarias aprobadas.
 
 ### Test/Evaluación
-- **Artefactos esperados**: Casos de prueba, métricas de rendimiento.
-- **Owner principal**: QA Engineer.
-- **Failure mode más común**: Pruebas insuficientes para modelos de IA.
-- **Criterio de salida**: Aprobación de pruebas de aceptación.
+- **Artefactos esperados**: Resultados de pruebas, métricas de rendimiento.
+- **Owner principal**: Ingeniero de QA.
+- **Failure mode más común**: Modelos que no generalizan bien.
+- **Criterio de salida**: Modelos cumplen con métricas de rendimiento predefinidas.
 
 ### Deployment
 - **Artefactos esperados**: Entorno de producción, scripts de despliegue.
-- **Owner principal**: DevOps Engineer.
-- **Failure mode más común**: Despliegue fallido por incompatibilidad.
-- **Criterio de salida**: Despliegue exitoso y validación post-despliegue.
+- **Owner principal**: Ingeniero DevOps.
+- **Failure mode más común**: Despliegue fallido por incompatibilidades.
+- **Criterio de salida**: Despliegue exitoso y funcional.
 
 ### Monitoreo y mejora continua
-- **Artefactos esperados**: Dashboards, reportes de rendimiento.
-- **Owner principal**: Data Engineer.
-- **Failure mode más común**: Falta de monitoreo de drift del modelo.
-- **Criterio de salida**: Alertas configuradas y métricas de rendimiento estables.
+- **Artefactos esperados**: Dashboards de métricas, reportes de rendimiento.
+- **Owner principal**: Ingeniero de datos.
+- **Failure mode más común**: Desactualización de modelos.
+- **Criterio de salida**: Monitoreo activo y ajustes realizados según métricas.
 
 ## Ejemplo aplicado
 
 ### Caso: Asistente de soporte para ecommerce
 
 #### Opción A (solo software)
-- **Arquitectura**: Sistema basado en reglas con un motor de decisiones.
-- **Límites**: Respuestas limitadas a reglas predefinidas.
-- **Costo esperado**: Bajo, pero con alto costo de mantenimiento.
-- **Deuda técnica probable**: Difícil de escalar y adaptar a nuevas preguntas.
+- **Arquitectura**: Microservicios para gestión de tickets.
+- **Límites**: Dependencia de reglas predefinidas, no adaptable a nuevas consultas.
+- **Costo esperado**: Bajo, pero con alta deuda técnica a largo plazo.
+- **Deuda técnica probable**: Necesidad de reescribir lógica a medida que cambian los requerimientos.
 
-**Flujo**: Entrada (pregunta del usuario) -> Procesamiento (motor de decisiones) -> Salida (respuesta predefinida).
+**Flujo**:
+- Entrada: Consulta del cliente.
+- Procesamiento: Reglas de negocio aplicadas.
+- Salida: Respuesta estática.
 
 #### Opción B (AI Engineering)
-- **Arquitectura**: Modelo de NLP entrenado con datos históricos.
-- **Límites**: Dependencia de la calidad y cantidad de datos.
-- **Costo esperado**: Alto, debido a la necesidad de datos y entrenamiento.
-- **Deuda técnica probable**: Riesgo de drift del modelo y necesidad de reentrenamiento.
+- **Arquitectura**: Modelo de NLP para entender consultas.
+- **Límites**: Dependencia de datos de entrenamiento, sesgos potenciales.
+- **Costo esperado**: Alto, por la necesidad de infraestructura y datos.
+- **Deuda técnica probable**: Modelos que requieren reentrenamiento frecuente.
 
-**Flujo**: Entrada (pregunta del usuario) -> Procesamiento (modelo de IA) -> Salida (respuesta generada).
+**Flujo**:
+- Entrada: Consulta del cliente.
+- Procesamiento: Modelo de AI analiza y genera respuesta.
+- Salida: Respuesta generada por el modelo.
 
 #### Opción C (híbrida)
-- **Arquitectura recomendada**: Combinación de un motor de decisiones y un modelo de IA.
-- **Por qué**: Permite respuestas rápidas para preguntas comunes y flexibilidad para consultas más complejas.
+- **Arquitectura recomendada**: Combinación de microservicios y modelo de AI.
+- **Por qué**: Permite manejar consultas comunes con reglas y escalar a AI para consultas complejas.
 
-**Flujo**: Entrada (pregunta del usuario) -> Procesamiento (motor de decisiones + modelo de IA) -> Salida (respuesta optimizada).
+**Flujo**:
+- Entrada: Consulta del cliente.
+- Procesamiento: Reglas para consultas simples, modelo de AI para complejas.
+- Salida: Respuesta adecuada según el tipo de consulta.
 
 ## Anti-patrones
 
-| Síntoma                          | Impacto                                         | Mitigación operativa                          |
-|----------------------------------|------------------------------------------------|-----------------------------------------------|
-| Modelos de IA no documentados    | Dificultad para entender decisiones del modelo | Documentar el proceso de entrenamiento y decisiones |
-| Dependencia excesiva de datos    | Modelos sesgados o ineficaces                  | Implementar validaciones de calidad de datos  |
-| Falta de pruebas en producción    | Desempeño inesperado del modelo                | Establecer pruebas A/B y monitoreo continuo   |
-| Ignorar el drift del modelo      | Desempeño decreciente con el tiempo            | Monitoreo regular de métricas de rendimiento   |
-| Sobrecarga de reglas en software | Complejidad y dificultad de mantenimiento      | Simplificar reglas y priorizar casos de uso   |
+1. **Síntoma**: Modelos de AI sin datos suficientes.
+   - **Impacto**: Resultados inexactos.
+   - **Mitigación operativa**: Asegurar un conjunto de datos robusto antes del desarrollo.
+
+2. **Síntoma**: Dependencia excesiva en la automatización.
+   - **Impacto**: Falta de control humano en decisiones críticas.
+   - **Mitigación operativa**: Mantener un proceso de revisión manual.
+
+3. **Síntoma**: Ignorar la interpretabilidad del modelo.
+   - **Impacto**: Dificultad para explicar decisiones a stakeholders.
+   - **Mitigación operativa**: Usar modelos interpretables o proporcionar explicaciones.
+
+4. **Síntoma**: No realizar pruebas de regresión en modelos.
+   - **Impacto**: Desempeño degradado en producción.
+   - **Mitigación operativa**: Implementar pruebas de regresión sistemáticas.
+
+5. **Síntoma**: No actualizar modelos basados en feedback.
+   - **Impacto**: Modelos obsoletos.
+   - **Mitigación operativa**: Establecer un ciclo de retroalimentación continuo.
 
 ## Checklist de adopción para equipo
 1. Definir claramente los objetivos del proyecto.
 2. Evaluar la disponibilidad y calidad de los datos.
-3. Establecer roles y responsabilidades claras.
-4. Implementar un sistema de control de versiones.
-5. Desarrollar pruebas unitarias y de integración.
-6. Configurar un entorno de despliegue automatizado.
-7. Establecer métricas de rendimiento y monitoreo.
-8. Documentar procesos y decisiones técnicas.
-9. Realizar revisiones de código regulares.
-10. Planificar sesiones de retroalimentación post-lanzamiento.
+3. Identificar las habilidades del equipo en AI y software.
+4. Establecer métricas de éxito claras.
+5. Realizar un análisis de riesgos técnicos.
+6. Planificar la infraestructura necesaria.
+7. Definir un proceso de monitoreo y evaluación.
+8. Establecer un plan de mantenimiento para modelos.
+9. Asegurar la alineación con stakeholders.
+10. Documentar todo el proceso para futuras referencias.
 
 ## Guía de decisión final
-- **Cuando usar enfoque de software clásico**: Proyectos con reglas claras y bajo riesgo de cambio.
-- **Cuando usar AI Engineering**: Proyectos que requieren adaptabilidad y aprendizaje de datos.
-- **Cuando usar enfoque híbrido**: Proyectos que necesitan respuestas rápidas y flexibilidad.
-- **Regla práctica para decidir en menos de 5 minutos**: Si el problema puede ser resuelto con reglas fijas, usa software clásico; si requiere aprendizaje y adaptación, considera AI Engineering.
+- **Cuando usar enfoque de software clásico**: Proyectos con reglas bien definidas y bajo riesgo de cambio.
+- **Cuando usar AI engineering**: Proyectos que requieren adaptación a datos y aprendizaje continuo.
+- **Cuando usar enfoque híbrido**: Proyectos que combinan reglas simples con la necesidad de adaptarse a consultas complejas.
+- **Regla práctica para decidir en menos de 5 minutos**: Si el problema puede ser resuelto con reglas claras y no cambia frecuentemente, usa software clásico; si requiere aprendizaje y adaptación, opta por AI.

@@ -13,10 +13,10 @@ install-prompting: check-uv
 	$(UV) sync
 
 run-ai: check-uv
-	$(UV) run python 01_class/ai_engineering/brief_builder/main.py
+	$(UV) run python 01-introduction/ai_engineering/brief_builder/main.py
 
 run-eg1: check-uv
-	$(UV) run python 01_class/ai_engineering/brief_builder/eg1.py
+	$(UV) run python 01-introduction/ai_engineering/brief_builder/eg1.py
 
 run-ai-context: check-uv
 	$(UV) run python 01_class/ai_engineering/brief_builder/main.py --context "$(CONTEXT)"
