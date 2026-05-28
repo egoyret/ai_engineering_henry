@@ -1,7 +1,7 @@
 UV ?= uv
 PYTHON ?= python3
 
-.PHONY: check-uv install install-prompting run-ai run-ai-context run-ai-model run-se test-se test-ai test-ai-cov test-all lint format check run-cot run-react run-cot-pydantic run-react-pydantic run-all-prompting run-notebooks verify-notebooks run-powerbi-setup run-powerbi clean
+.PHONY: check-uv install install-prompting run-ai run-ai-context run-ai-model run-se test-se test-ai test-ai-cov test-all lint format check run-cot run-react run-cot-pydantic run-react-pydantic run-all-prompting run-notebooks verify-notebooks clean
 
 check-uv:
 	@command -v $(UV) >/dev/null 2>&1 || (echo "uv no esta instalado. Instala uv y vuelve a ejecutar."; exit 1)
@@ -92,14 +92,6 @@ format: check-uv
 
 check:
 	$(PYTHON) -m compileall 01_class
-
-run-powerbi-setup: check-uv
-	@echo " Generating dashboard_lanas_excel.xlsx sample data..."
-	$(UV) run python 03-power-bi/create_sample_data.py
-
-run-powerbi: check-uv
-	@echo " Connecting to dashboard_lanas_excel..."
-	$(UV) run python 03-power-bi/connector.py
 
 clean:
 	find . -type d -name "__pycache__" -prune -exec rm -rf {} +
